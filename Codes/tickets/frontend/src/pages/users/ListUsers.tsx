@@ -1,4 +1,5 @@
 import AppHeader from "@/components/AppHeader"
+import Card from "@/components/Card"
 import api from "@/services/api"
 import type { UserInterface } from "@/types/users"
 import { useEffect, useState } from "react"
@@ -6,7 +7,7 @@ import { useEffect, useState } from "react"
 const ListUsers = () => {
 
     // Hook: useState
-    const [ users, setUsers ] = useState<UserInterface[]>([])
+    const [users, setUsers] = useState<UserInterface[]>([])
 
     // Hook: useEffect
     useEffect(() => {
@@ -19,22 +20,19 @@ const ListUsers = () => {
 
     }, [])
 
-    return(
+    return (
         <>
             <AppHeader title="Lista de usuários" />
-
-            <ul>
-
+            <div className="flex flex-wrap justify-center">
                 {
-                    users.map( user => (
-                        <li key={user.id}>{user.name}</li>
-                    ) )
+                    users.map(user => (
+                        <Card key={user.id} id={user.id} name={user.name} />
+                    ))
                 }
-
-            </ul>
+            </div>
         </>
     )
-    
+
 }
 
 export default ListUsers
